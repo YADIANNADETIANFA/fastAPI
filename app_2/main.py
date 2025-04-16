@@ -8,4 +8,5 @@ app_2.include_router(router)
 
 
 if __name__ == "__main__":
-    uvicorn.run("app_2.main:app_2", host="127.0.0.1", port=8000)
+    # 默认，单进程处理
+    uvicorn.run("app_2.main:app_2", host="127.0.0.1", port=8000, workers=1)
