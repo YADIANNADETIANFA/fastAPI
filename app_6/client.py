@@ -7,7 +7,7 @@ def task_process(url):
     print(response.json(), flush=True)
 
 
-def sycn_test():
+def sync_test():
     """
     同步阻塞，client端10个并发请求
     使用线程池进行异步封装
@@ -23,6 +23,6 @@ def sycn_test():
 
 
 if __name__ == '__main__':
-    sycn_test()
+    sync_test()
 
     print("done")
