@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Optional, Dict, Any
 import httpx
 import uvicorn
 from datetime import datetime
@@ -13,6 +14,17 @@ app_7 = FastAPI(title="My FastAPI App_7", version="1.0.0")
 class RequestData(BaseModel):
     name: str
     email: str
+
+
+# 请求响应体模版
+class ResponseTemplate(BaseModel):
+    # 非HTTP状态码，而是业务规定的状态码 (这里规定: 0-请求成功; 1-请求失败)
+    code: str = Field(..., description="请求响应业务状态码")
+    msg: str = Field(..., description="请求响应信息")
+    data: Optional[Dict[str, Any]] = Field(None, description="请求响应数据")
+
+
+
 
 
 # 异步封装POST请求
