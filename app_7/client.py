@@ -4,8 +4,7 @@ import concurrent.futures
 
 def task_process(url):
     headers = {"Content-Type": "application/json"}
-    body = {"name": "zk", "email": "2333@gmail.com"}
-
+    body = {"name": "zk"}
     response = requests.post(
         url,
         headers=headers,
@@ -15,10 +14,9 @@ def task_process(url):
 
 
 def async_test():
-    url = "http://127.0.0.1:8000/api-test"
-
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-        futures = [executor.submit(task_process, url) for _ in range(1)]
+    url = "http://127.0.0.1:8000/api/get-user"
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(task_process, url) for _ in range(10)]
     concurrent.futures.wait(futures)
 
 
